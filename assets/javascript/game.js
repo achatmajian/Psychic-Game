@@ -7,6 +7,7 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 var wins = 0;
 var losses = 0;
 var guesses = 0;
+var guessesLog = "";
 
 //Sometimes the computer picks the same letter twice in a row, is there a way to avoid that?
 var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)]
@@ -14,7 +15,7 @@ var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)]
 console.log(computerChoice)
 
 //Function for user keypress
-$(userGuess).keydown(function)  {
+document.onKeyDown() = function(event) {
     var userGuess = event.key;
 
     //if user guess is the same as computer choice, +1 to "wins"
@@ -22,15 +23,24 @@ $(userGuess).keydown(function)  {
         wins++;
     }
     // if user guess is not the same as computer choice, -1 to "guesses"
-    else (userGuess !== computerChoice) 
-        guessess--;
+    else (userGuess !== computerChoice) {
+        guesses--;
     }
     //if user reaches 0 guesses left, +1 to "losses"
     if (guesses === 0) {
         losses++;
+    }
+
+    // Get element by ID in order to update numbers for wins, losses, and guesses
+    document.getElementById("wins").innerHTML = "Wins: " + wins;
+    document.getElementById("losses").innerHTML = "losses: " + losses;
+    document.getElementById("guesses").innerHTML = "Guesses left: " + guesses;
     
+    // Keylog function for "Your guesses so far"
+    document.addEventListener("keypress", logKey);
+    function logKey() {
+    log.guessesLog += ${e.code};
+    document.getElementById("guessesLog").innerHTML = "Your guesses so far: " + guessesLog; 
+}
 
-};
-
-
-
+}
